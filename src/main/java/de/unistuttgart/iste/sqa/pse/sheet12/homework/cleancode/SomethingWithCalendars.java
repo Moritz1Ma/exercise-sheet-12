@@ -7,27 +7,27 @@ import java.util.Scanner;
 
 public class SomethingWithCalendars {
 
-	static String[] weekDays = new String[] {"Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur"};
+	static String[] weekDays = new String[] {"Sunday", "Monday", "Tuesday", "Wednesday",
+			"Thursday", "Friday", "Saturday"};
 
 	static void setCalendarDate(final Calendar cal, final String date, final String sep) {
-		final String[] fs = date.split(sep);
-		cal.set(parseInt(fs[0]), parseInt(fs[1]) - 1, parseInt(fs[2]));
+		final String[] splitDate = date.split(sep);
+		cal.set(parseInt(splitDate[0]), parseInt(splitDate[1]) - 1, parseInt(splitDate[2]));
 	}
 
 	public static void main(final String[] args) {
 		final Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the input for SomethingWithCalendars: (press enter to confirm)");
 		final String input = scanner.nextLine();
-		final Calendar cal = Calendar.getInstance();
-		if (input.indexOf("-") >= 0) {
-			setCalendarDate(cal, input, "-");
-		} else if (input.indexOf("/") >= 0) {
-			setCalendarDate(cal, input, "/");
-		} else if (input.indexOf(".") >= 0) {
-			final String[] fs = input.split(".");
-			cal.set(parseInt(fs[0]), parseInt(fs[1]) - 1, parseInt(fs[2]));
+		final Calendar calendar = Calendar.getInstance();
+		if (input.contains("-")) {
+			setCalendarDate(calendar, input, "-");
+		} else if (input.contains("/")) {
+			setCalendarDate(calendar, input, "/");
+		} else if (input.contains(".")) {
+			setCalendarDate(calendar, input, "\\.");
 		}
-		final int wd = cal.get(Calendar.DAY_OF_WEEK);
-		System.out.printf("%sday\n", weekDays[wd - 1]);
+		final int weekday = calendar.get(Calendar.DAY_OF_WEEK);
+		System.out.printf("%s\n", weekDays[weekday - 1]);
 	}
 }
