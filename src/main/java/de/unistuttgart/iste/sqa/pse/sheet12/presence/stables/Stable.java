@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @version 1.0
  */
-public class Stable {
+public class 	Stable {
 	private final int id;
 	protected final String addressOfStable;
 	protected final float temperature;
