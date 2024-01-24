@@ -1,17 +1,19 @@
 package de.unistuttgart.iste.sqa.pse.sheet12.homework.cleancode;
 
 import static java.lang.Integer.parseInt;
-
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * This class allows a user interaction by letting the user write a date and returning the day of the week of given date.
+ *
+ * @ author Moritz Mairle, Quentin Hadar, Nora Jasharaj
+ */
 public class SomethingWithCalendars {
     static String[] weekDays = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     public static void main(final String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the input for SomethingWithCalendars: (press enter to confirm)");
-        final String input = scanner.nextLine();
+        final String input = getUserInput();
         final Calendar calendar = Calendar.getInstance();
         final String separator = getSeparator(input);
         if (separator != null) {
@@ -22,12 +24,24 @@ public class SomethingWithCalendars {
     }
 
     /**
-     * Gets the seperators of the date, returns null if no seperator can be found.
+     * Gets the input written by the user;
+     *
+     * @return the input by the user;
+     */
+    private static String getUserInput() {
+        final Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the input for SomethingWithCalendars: (press enter to confirm)%n");
+        return scanner.nextLine();
+    }
+
+    /**
+     * Gets the separators of the date, returns null if no separator can be found.
      *
      * @param input the input given my the user;
-     * @return the seperator or null, if no seperator is found;
+     * @return the separator or null, if no separator is found;
      */
     private static String getSeparator(final String input) {
+        assert !(input==null);
         if (input.contains("-")) {
             return "-";
         } else if (input.contains("/")) {
@@ -44,9 +58,14 @@ public class SomethingWithCalendars {
      * @param calendar  the calendar;
      * @param date      the date;
      * @param separator the separator separating the numbers of the date from each other;
+     * @throws NumberFormatException if the date format is invalid;
      */
-    static void setCalendarDate(final Calendar calendar, final String date, final String separator) {
+    public static void setCalendarDate(final Calendar calendar, final String date, final String separator) {
         final String[] finalDate = date.split(separator);
-        calendar.set(parseInt(finalDate[0]), parseInt(finalDate[1]) - 1, parseInt(finalDate[2]));
+        try {
+            calendar.set(Integer.parseInt(finalDate[0]), Integer.parseInt(finalDate[1]) - 1, Integer.parseInt(finalDate[2]));
+        } catch (NumberFormatException exception) {
+            System.out.println("Invalid date format. Please enter a valid date.");
+        }
     }
 }
