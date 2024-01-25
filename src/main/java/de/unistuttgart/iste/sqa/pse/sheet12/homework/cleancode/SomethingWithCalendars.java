@@ -5,12 +5,14 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- * This class allows a user interaction by letting the user write a date and returning the day of the week of given date.
+ * This class allows a user interaction by letting the user write a date and returning the weekday of the week of given date.
  *
- * @ author Moritz Mairle, Quentin Hadar, Nora Jasharaj
+ * @author Moritz Mairle, Quentin Hadar, Nora Jasharaj
  */
-public class SomethingWithCalendars {
-    static String[] weekDays = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+    public class SomethingWithCalendars {
+        static String[] weekDays = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
 
     public static void main(final String[] args) {
         final String input = getUserInput();
@@ -24,7 +26,7 @@ public class SomethingWithCalendars {
     }
 
     /**
-     * Gets the input written by the user;
+     * Gets the input provided by the user;
      *
      * @return the input by the user;
      */
@@ -34,6 +36,11 @@ public class SomethingWithCalendars {
         return scanner.nextLine();
     }
 
+
+    /*@
+      @requires input !==null;
+      @ensures either null or the separator is being returned;
+     */
     /**
      * Gets the separators of the date, returns null if no separator can be found.
      *
@@ -52,6 +59,12 @@ public class SomethingWithCalendars {
         return null;
     }
 
+    /*@
+      @requires calendar!== null;
+      @requires date !== null;
+      @requires separator!==null;
+      @ensures new calendarDate;
+     */
     /**
      * Sets a new calendar date for the calendar;
      *
