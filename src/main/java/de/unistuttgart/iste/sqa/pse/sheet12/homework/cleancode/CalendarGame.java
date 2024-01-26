@@ -57,7 +57,7 @@ public class CalendarGame {
         } else if (input.contains("/")) {
             return "/";
         } else if (input.contains(".")) {
-            return "//.";
+            return "\\.";
         }
         return null;
     }
